@@ -9,7 +9,7 @@ import (
 
 func HandleResquest() {
 	http.HandleFunc("/", controllers.Home)
-	http.HandleFunc("/api/" controllers.Api)
+	http.HandleFunc("/api/personalidades", controllers.TodasPerso)
 	log.Fatal(http.ListenAndServe(":8000", nil))
 
 }
