@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"go_api_rest/controllers"
+	"go_api_rest/middleware"
 
 	"github.com/gorilla/mux"
 )
@@ -13,6 +14,7 @@ func HandleResquest() {
 
 	//Criando router para o gorilla mux
 	r := mux.NewRouter()
+	r.Use(middleware.ContentTypeMiddleware)
 	r.HandleFunc("/", controllers.Home)
 	r.HandleFunc("/api/personalidades", controllers.CriaPerso).Methods("Post")
 	r.HandleFunc("/api/personalidades", controllers.TodasPerso).Methods("Get")

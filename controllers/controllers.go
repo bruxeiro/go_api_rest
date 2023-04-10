@@ -15,6 +15,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 }
 
 func TodasPerso(w http.ResponseWriter, r *http.Request) {
+
 	var p []models.Personalidade
 	database.DB.Find(&p)
 	json.NewEncoder(w).Encode(p)
