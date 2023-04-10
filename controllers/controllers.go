@@ -6,7 +6,6 @@ import (
 	"go_api_rest/database"
 	"go_api_rest/models"
 	"net/http"
-	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -28,11 +27,7 @@ func RetornaPerso(w http.ResponseWriter, r *http.Request) {
 	//Puxando apenas o id contido em vars
 	id := vars["id"]
 
-	//Comparar 1 personalidade por vez baseada no ID
-	for _, personalidade := range models.Personalidades {
-		if strconv.Itoa(personalidade.Id) == id {
-			json.NewEncoder(w).Encode(personalidade)
-		}
-	}
-
+	var p models.Personalidade
+	database.DB.First(&p, id)
+	json.NewEncoder(w).Encode(p)
 }
