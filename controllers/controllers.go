@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"go_api_rest/database"
 	"go_api_rest/models"
 	"net/http"
 	"strconv"
@@ -15,7 +16,9 @@ func Home(w http.ResponseWriter, r *http.Request) {
 }
 
 func TodasPerso(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode(models.Personalidades)
+	var p []models.Personalidade
+	database.DB.Find(&p)
+	json.NewEncoder(w).Encode(p)
 }
 
 // Função para retornar personalidades usando o gorila mux

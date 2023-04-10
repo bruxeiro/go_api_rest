@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go_api_rest/database"
 	"go_api_rest/models"
 	"go_api_rest/routes"
 )
@@ -13,6 +14,7 @@ func main() {
 		{Id: 2, Nome: "Nome 2", Historia: "Historia 2"},
 	}
 
+	database.ConectaBanco()
 	fmt.Println("Iniciando projeto Go_Api_REST")
 	routes.HandleResquest()
 }
